@@ -8,35 +8,35 @@
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| name               | string | null: false               |
-| kana-name          | string | null: false               |
-| birthday           | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| kana_last_name     | string | null: false               |
+| kana_first_name    | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 
 - has_many :items
 - has_many :records
-- has_many :addresses
 
 ## itemsテーブル
 
-| Column    |Type        | Options                        |
-| --------- |------------| ------------------------------ |
-| title     | string     | null: false                    |
-| content   | string     | null: false                    |
-| category  | string     | null: false                    |
-| condition | string     | null: false                    |
-| charge    | string     | null: false                    |
-| area      | string     | null: false                    |
-| day       | string     | null: false                    |
-| price     | integer    | null: false                    | 
-| user      | references | null: false, foreign_key: true |
+| Column       | Type       | Options                        |
+| ---------    |------------| ------------------------------ |
+| title        | string     | null: false                    |
+| content      | text       | null: false                    |
+| category_id  | integer    | null: false                    |
+| condition_id | integer    | null: false                    |
+| charge_id    | integer    | null: false                    |
+| area_id      | integer    | null: false                    |
+| day_id       | integer    | null: false                    |
+| price        | integer    | null: false                    | 
+| user         | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_one :addresses
-- has_one :records
+- belongs_to :user
+- has_one :record
 
 ## recordsテーブル
 
@@ -47,24 +47,23 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one :addresses
+- belongs_to :user
+- belongs_to :item
 
 ## addressesテーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| postal-code  | integer    | null: false                    |
-| prefecture   | string     | null: false                    |
+| postal-code  | string     | null: false                    |
+| area_id      | integer    | null: false                    |
 | city         | string     | null: false                    |
-| house-number | integer    | null: false                    |
+| house-number | string     | null: false                    |
 | building     | string     |                                |
-| phone-number | integer    | null: false                    |
+| phone-number | string     | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :records
-- belongs_to :items
+- belongs_to :user
+- belongs_to :record
+- belongs_to :item
