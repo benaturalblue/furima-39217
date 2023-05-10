@@ -36,7 +36,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :record
+- has_one    :record
 
 ## recordsテーブル
 
@@ -49,21 +49,20 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one    :address
 
 ## addressesテーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| postal-code  | string     | null: false                    |
+| postal_code  | string     | null: false                    |
 | area_id      | integer    | null: false                    |
 | city         | string     | null: false                    |
-| house-number | string     | null: false                    |
+| house_number | string     | null: false                    |
 | building     | string     |                                |
-| phone-number | string     | null: false                    |
-| user         | references | null: false, foreign_key: true |
+| phone_number | string     | null: false                    |
+| record       | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :record
-- belongs_to :item
