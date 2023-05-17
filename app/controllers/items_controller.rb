@@ -17,6 +17,10 @@ class ItemsController < ApplicationController
       render action: :new
     end
   end
+  
+   def show
+    @item = Item.find(params[:id])
+   end
 
   private
 
