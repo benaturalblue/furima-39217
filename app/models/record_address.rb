@@ -15,5 +15,8 @@ class RecordAddress
     Address.create(postal_code: postal_code, area_id: area_id, city: city, house_number: house_number, building: building, phone_number: phone_number, record_id: record.id)
   end
   
+  attr_accessor :token
+  validates :token, presence: true
+  
   
 end
