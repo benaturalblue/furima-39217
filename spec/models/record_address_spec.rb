@@ -10,7 +10,7 @@ RSpec.describe RecordAddress, type: :model do
   
   describe '商品購入' do
     context '商品購入できるとき' do
-      it 'postal_code,area_id,city,house_number,phone_numberが存在すれば登録できる' do
+      it 'postal_code,area_id,city,house_number,phone_number,tokenが存在すれば登録できる' do
         expect(@record_address).to be_valid
       end
       it 'buildingは空でも登録できる' do
@@ -69,6 +69,11 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.phone_number = '１２３４５６７８９０'
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Phone number is not a number")
+      end
+      it "tokenが空では登録できないこと" do
+        @record_address.token = nil
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
