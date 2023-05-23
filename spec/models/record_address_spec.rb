@@ -5,7 +5,6 @@ RSpec.describe RecordAddress, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @record_address = FactoryBot.build(:record_address, user_id: user.id, item_id: item.id)
-    sleep(1)
   end
 
   describe '商品購入' do
@@ -74,6 +73,16 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.token = nil
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐づいていなければ登録ができないこと' do
+        @record_address.user_id = nil
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐づいていなければ登録ができないこと' do
+        @record_address.item_id = nil
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
